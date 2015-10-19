@@ -1,0 +1,116 @@
+CREATE DATABASE "tutorApp"
+  WITH ENCODING='UTF8'
+       CONNECTION LIMIT=-1;
+       
+       
+ --------------------------------
+ 
+ CREATE SEQUENCE sex_sequence
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+  
+------------------------------------
+
+CREATE TABLE sex
+(
+  sex_id bigint NOT NULL DEFAULT nextval('sex_sequence'::regclass),
+ sex_name character varying(30)
+  )
+WITH (
+  OIDS=FALSE
+);
+
+----------------------------------
+ALTER TABLE sex
+  ADD CONSTRAINT sex_pkey
+    PRIMARY KEY (sex_id)
+
+-----------------------------------
+
+insert into sex(
+sex_name) values ('male');
+
+insert into sex(
+sex_name) values ('female');
+
+insert into sex(
+sex_name) values ('other');
+  
+ -----------------------------------
+  CREATE SEQUENCE role_sequence
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+  
+  -------------------------------------
+  
+  CREATE TABLE ROLES
+(
+  id bigint NOT NULL DEFAULT nextval('role_sequence'::regclass),
+  role_id bigint,
+  role_name character varying(100)
+  )
+WITH (
+  OIDS=FALSE
+);
+
+----------------------------------------------------
+ALTER TABLE roles
+  ADD CONSTRAINT roles_pkey
+    PRIMARY KEY (role_id)
+
+-------------------------------------------------------
+insert into ROLES(
+role_id,
+role_name) values (1,'teacher');
+
+--------------------------------------------------------------
+
+
+insert into ROLES(
+role_id,
+role_name) values (2,'student');
+
+------------------------------------------
+
+CREATE SEQUENCE user_sequence
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+  
+------------------------------------------
+CREATE TABLE users
+(
+  user_id bigint NOT NULL DEFAULT nextval('user_sequence'::regclass),
+  name character varying(150) NOT NULL,
+  email character varying(100) NOT NULL UNIQUE,
+  password character varying(150) NOT NULL,
+  mobile_no character varying(100) NOT NULL UNIQUE,
+  sex_id int NOT NULL,
+  role_id int NOT NULL,
+  created_on timestamp without time zone NOT NULL,
+  is_completed  int DEFAULT -1,
+  CONSTRAINT users_primary_key  PRIMARY KEY  (user_id),
+  CONSTRAINT sex_id FOREIGN KEY (sex_id)
+      REFERENCES sex (sex_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+ CONSTRAINT role_id FOREIGN KEY (role_id)
+      REFERENCES roles (role_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+  )
+WITH (
+  OIDS=FALSE
+);
+
+--------------------------------------------------------
+alter table users ADD  column is_blacklisted  int DEFAULT -1;
+
+-------------------------------------------------------- 
+
