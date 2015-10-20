@@ -1,7 +1,6 @@
 package com.utils;
 
 import java.security.MessageDigest;
-import java.sql.Timestamp;
 
 public class Utils {
 

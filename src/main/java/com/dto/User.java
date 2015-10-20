@@ -1,7 +1,5 @@
 package com.dto;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
