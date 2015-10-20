@@ -9,9 +9,9 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd ">
 
 	<context:annotation-config />
-	<!-- <context:component-scan base-package="com.*" /> -->
-	<context:component-scan base-package="com.controller"></context:component-scan>
 	<mvc:annotation-driven />
+	<context:component-scan base-package="com.*" />
+	<!-- <context:component-scan base-package="com.controller"></context:component-scan> -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<bean id="jspViewResolver"
@@ -50,7 +50,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.dto.User</value>
+				<value>com.dto</value>
 			</list>
 		</property>
 	</bean>

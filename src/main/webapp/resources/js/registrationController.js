@@ -5,7 +5,7 @@ $scope.submitUserDetails=function(user){
 	$http({
 		url:'/tutorApp/submitUserDetails', 
 		method: "post",
-		params: {data: user}
+		params: {user: user}
 	}).then(function(response){
 		console.log("reponse",response);
 		$scope.user={};

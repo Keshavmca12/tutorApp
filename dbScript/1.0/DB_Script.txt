@@ -112,5 +112,9 @@ WITH (
 --------------------------------------------------------
 alter table users ADD  column is_blacklisted  int DEFAULT -1;
 
+alter table users drop column created_on;
+
+alter table users add column created_on bigint;
+
 -------------------------------------------------------- 
 

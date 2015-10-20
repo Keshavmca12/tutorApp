@@ -1,10 +1,13 @@
 package com.dto;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,13 +24,13 @@ public class User {
 	private short sex;
 	private short role;
 	private short isCompleted=-1;
-	private short isBlacklisted;
-	private String createdOn;
+	private short isBlacklisted=-1;
+	private long createdOn;
 	@Column(name = "CREATED_ON", nullable = false)
-	public String getCreatedOn() {
+	public long getCreatedOn() {
 		return createdOn;
 	}
-	public void setCreatedOn(String createdOn) {
+	public void setCreatedOn(long createdOn) {
 		this.createdOn = createdOn;
 	}
 	@Column(name="IS_BLACKLISTED", nullable = false)
@@ -38,7 +41,7 @@ public class User {
 		this.isBlacklisted = isBlacklisted;
 	}
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	public int getId() {
 		return id;
@@ -82,10 +85,10 @@ public class User {
 	public void setSex(short sex) {
 		this.sex = sex;
 	}
+	@Column(name = "ROLE_ID",nullable = false)
 	public short getRole() {
 		return role;
 	}
-	@Column(name = "ROLE_ID",nullable = false)
 	public void setRole(short role) {
 		this.role = role;
 	}

@@ -1,11 +1,12 @@
 package com.utils;
 
 import java.security.MessageDigest;
+import java.sql.Timestamp;
 
 public class Utils {
 
-	public static String getCurrentTimeStamp(){
-		return 	System.currentTimeMillis()+"";
+	public static long getCurrentTimeStamp(){
+		return 	System.currentTimeMillis();
 	};
 	
 	public static String convertIntoMd5(String password) throws Exception{
