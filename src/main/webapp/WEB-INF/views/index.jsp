@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
 <html ng-app="tutorApp">
 <head>
 <title>Tutor App</title>
@@ -14,6 +16,12 @@
 <script src="resources/js/registrationController.js"></script>
 </head>
 <body ng-controller="AppController">
+	<h3>
+		<c:if test="${not empty msg}">
+			<div class="msg">${msg}</div>
+		</c:if>
+	</h3>
+
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -38,11 +46,12 @@
 	<div class="container-fluid body-content">
 		<div class="jumbotron">
 			<h2>Login</h2>
-			<form class="form-horizontal">
+			<form class="form-horizontal" name='loginForm'
+		  action="<c:url value='/j_spring_security_check' />" method='POST'>
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3"
+						<input type="text" name="name" class="form-control" id="inputEmail3"
 							placeholder="Email">
 					</div>
 				</div>
@@ -63,7 +72,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Sign in</button>
+						<input type="submit" value="sign in" class="btn btn-default"/>
 					</div>
 				</div>
 			</form>

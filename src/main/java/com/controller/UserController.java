@@ -24,11 +24,6 @@ public class UserController {
 	@Autowired
 	private UserService uerService;
 	
-	@RequestMapping(value = "/employeeForm", method = RequestMethod.GET)
-	public String smartTable() {
-		System.out.println("serving employeeForm page");
-		return "employeeForm";
-	}
 	
 	@RequestMapping(value = "/submitUserDetails", method = RequestMethod.POST)
 	public   @ResponseBody String  submitUserDetails(@RequestParam("user") String userString) {

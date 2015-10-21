@@ -20,6 +20,7 @@ public class User {
 	private  String mobileNo;
 	private String password;
 	private short sex;
+	/* its convention to add ROLE_* to any role for using spring security */
 	private short role;
 	private short isCompleted=-1;
 	private short isBlacklisted=-1;
