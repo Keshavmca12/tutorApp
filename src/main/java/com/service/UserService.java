@@ -1,7 +1,11 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +36,18 @@ public class UserService {
 		userDao.saveUser(user);
 		responseList.add("user registered successfully");
 		return responseList;
+	}
+	public Map<String, String> verifyUser(String password,HttpSession session,String username) throws Exception{
+		Map<String,String> userAvailaibility=new HashMap<String, String>();
+		List<User> userList=userDao.isUserVerified(Utils.convertIntoMd5(password),username);
+		if(userList==null || userList.size()==0){
+			userAvailaibility.put("status", "invalid user");
+		}else{
+			User user=userList.get(0);
+			session.setAttribute("user",user);
+			userAvailaibility.put("status", "valid user");
+		}
+		return userAvailaibility;
 	}
 
 	public boolean isEmailUnique(String email){

@@ -35,6 +35,18 @@ public class UserDao {
 		return users;
 	}
 	@Transactional
+	public List<User> isUserVerified(String password,String username){
+		System.out.println("checking isUserVerified");
+		sessionFactory.getCurrentSession().flush();
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("User.findByUsernamePassword");
+		query.setString("username",username);
+		query.setString("password", password);
+		List<User> users = query.list();
+		System.out.println("users verified :: "+users);
+		return users;
+	}
+	
+	@Transactional
 	public List<User> checkMobileNoOfUser(String mobileNo){
 		System.out.println("checking phone no. existence");
 		sessionFactory.getCurrentSession().flush();

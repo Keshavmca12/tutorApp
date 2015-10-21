@@ -38,19 +38,19 @@
 	<div class="container-fluid body-content">
 		<div class="jumbotron">
 			<h2>Login</h2>
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="/tutorApp/login"  method="post">
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					<label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3"
-							placeholder="Email">
+						<input type="number" class="form-control" 
+							placeholder="Email" name="username"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3"
-							placeholder="Password">
+						<input type="password" class="form-control" name="password"
+							placeholder="Password" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -63,7 +63,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Sign in</button>
+						<input type="submit" class="btn btn-default" value="Sign in"/>
 					</div>
 				</div>
 			</form>
