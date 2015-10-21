@@ -7,11 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="USERS")
 @Access(AccessType.PROPERTY)
+@NamedQueries({@NamedQuery(name = "User.findByEmail", 
+query = "SELECT u FROM User u WHERE u.email = :email"),
+@NamedQuery(name = "User.findByMobileNo", 
+query = "SELECT u FROM User u WHERE u.mobileNo = :mobileNo")})
 public class User {
 
 	private int id;
@@ -97,5 +103,8 @@ public class User {
 	public void setIsCompleted(short isCompleted) {
 		this.isCompleted = isCompleted;
 	}
-
+     @Override
+    public String toString() {
+    	return "name  ::"+name+"  email ::"+email +"  mobile no ::"+mobileNo+" role :: "+role;
+    }
 }
