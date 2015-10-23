@@ -28,7 +28,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
+					<li><a href="/tutorApp">Home</a></li>
 					<li><a href="/Home/About">About</a></li>
 					<li><a href="/Home/Contact">Contact</a></li>
 				</ul>
@@ -43,7 +43,7 @@
 					<label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" 
-							placeholder="Email" name="username"/>
+							placeholder="Username" name="username"/>
 					</div>
 				</div>
 				<div class="form-group">

@@ -19,7 +19,8 @@ import com.utils.Utils;
 public class UserService {
 	@Autowired
 	private UserDao userDao;
-	public List<String> manipulateUserObject(User user) throws Exception{
+	public HashMap<String, Object> manipulateUserObject(User user) throws Exception{
+		HashMap<String, Object> responseMap=new HashMap<String, Object>();
 		List<String> responseList=new ArrayList<String>();
 		boolean isEmailUnique=isEmailUnique(user.getEmail());
 		boolean isMobileNoUnique=isMobileNoUnique(user.getMobileNo());
@@ -30,13 +31,17 @@ public class UserService {
 			if(!isMobileNoUnique){
 				responseList.add("mobile no. already registered");
 			}
-			return responseList;
+			responseMap.put("status", "invalid");
+			responseMap.put("messageList",responseList);
+			return responseMap;
 		}
 		user.setCreatedOn(Utils.getCurrentTimeStamp());
 		user.setPassword(Utils.convertIntoMd5(user.getPassword()));
 		userDao.saveUser(user);
 		responseList.add("user registered successfully");
-		return responseList;
+		responseMap.put("status", "valid");
+		responseMap.put("messageList",responseList);
+		return responseMap;
 	}
 	public Map<String, String> verifyUser(String password,HttpSession session,String username,HttpServletRequest request) throws Exception{
 		Map<String,String> userAvailaibility=new HashMap<String, String>();
