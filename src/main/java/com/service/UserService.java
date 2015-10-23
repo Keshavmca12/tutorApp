@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,14 @@ public class UserService {
 		responseList.add("user registered successfully");
 		return responseList;
 	}
-	public Map<String, String> verifyUser(String password,HttpSession session,String username) throws Exception{
+	public Map<String, String> verifyUser(String password,HttpSession session,String username,HttpServletRequest request) throws Exception{
 		Map<String,String> userAvailaibility=new HashMap<String, String>();
 		List<User> userList=userDao.isUserVerified(Utils.convertIntoMd5(password),username);
 		if(userList==null || userList.size()==0){
 			userAvailaibility.put("status", "invalid user");
 		}else{
 			User user=userList.get(0);
+			session = request.getSession(true);//equivalent to request.getSession();
 			session.setAttribute("user",user);
 			userAvailaibility.put("status", "valid user");
 		}

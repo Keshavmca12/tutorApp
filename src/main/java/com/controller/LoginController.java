@@ -24,11 +24,17 @@ public class LoginController {
 		String password=request.getParameter("password");
 		System.out.println("username :: "+username +"  password ::"+password);
 		try {
-			response=userService.verifyUser(password,session,username);
+			response=userService.verifyUser(password,session,username,request);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return response;
+	}
+	
+	@RequestMapping(value = "/invalidSession", method = RequestMethod.GET)
+	public String invalidSession() {
+		System.out.println("invalidSession");
+		return "invalidSession";
 	}
 }

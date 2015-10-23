@@ -16,23 +16,26 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 		if( request.getRequestURI().contains("resource"))
 		{
 
+		}if( request.getRequestURI().contains("submitUserDetails"))
+		{
+
 		}else if(request.getRequestURI().contains("invalidSession")){
 			//response.sendRedirect("/Test/invalidSession");
 		}else if(request.getRequestURI().contains("login")){ 
-			HttpSession session = request.getSession(true);//equivalent to request.getSession();
-			session.setAttribute("status", "loggedIn");
+			
+			//session.setAttribute("status", "loggedIn");
 			return true;
 		}else if(request.getRequestURI().contains("logout")){
 			HttpSession session = request.getSession(false);
-			if (session != null && session.getAttribute("status")!=null) {
+			if (session != null && session.getAttribute("user")!=null) {
 				session.invalidate();
-				response.sendRedirect("/Test");
+				response.sendRedirect("/tutorApp");
 				return false;
 			}
 		}else{
 			HttpSession session = request.getSession(false);
-			if (session == null || (session!=null && (session.getAttribute("status")==null))) {
-				response.sendRedirect("/Test/invalidSession");
+			if (session == null || (session!=null && (session.getAttribute("user")==null))) {
+				response.sendRedirect("/tutorApp/invalidSession");
 				return false;
 			}
 		}
