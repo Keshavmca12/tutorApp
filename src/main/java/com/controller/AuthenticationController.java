@@ -1,27 +1,36 @@
 package com.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthenticationController {
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView  loginPage(@RequestParam(value = "logout", required = false) String logout) {
+	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String  loginPage() {
 		System.out.println("returning login page");
 		 ModelAndView model = new ModelAndView();
 		  if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
 		  }
-		  model.setViewName("index");
+		  model.setViewName("login");
 
 		  return model;
+		return "login";
 		//return "index";
 	}
-
+*/
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String printHello(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "login"; // directed to tiles.xml
+	}
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homeAction(ModelMap model) {
 		System.out.println("returning home page");
