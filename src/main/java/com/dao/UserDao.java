@@ -1,9 +1,13 @@
 package com.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.dto.User;
 
 @Repository
@@ -20,4 +24,19 @@ public class UserDao {
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().save(user);
 	}
+	@Transactional 
+	public User findUserByUserName(String userName){
+		List<User> users = new ArrayList<User>();
+
+		users = sessionFactory.getCurrentSession()
+			.createQuery("from User where mobileNo=?")
+			.setParameter(0, userName).list();
+
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
+	}
+	
 }
