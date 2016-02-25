@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dto.Roles;
 import com.dto.User;
+import com.dto.UserRolesRel;
 
 @Repository
 public class UserDao {
@@ -17,14 +19,13 @@ public class UserDao {
 	public UserDao(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
-	
 	@Transactional
 	public void saveUser(User user){
-		System.out.println("saving user data");
+		System.out.println("saving user data"+user.getMobileNo());
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().save(user);
 	}
-	@Transactional 
+	@Transactional
 	public User findUserByUserName(String userName){
 		List<User> users = new ArrayList<User>();
 
@@ -38,5 +39,13 @@ public class UserDao {
 			return null;
 		}
 	}
+	@Transactional
+	public void  saveUserRoleRel(UserRolesRel rel){
+		System.out.println("saving user :"+rel.getRoleId());
+		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().save(rel);
+	}
+	
+	
 	
 }

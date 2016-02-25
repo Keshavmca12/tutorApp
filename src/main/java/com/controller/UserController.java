@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,9 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/submitUserDetails", method = RequestMethod.POST)
-	public   @ResponseBody String  submitUserDetails(@RequestParam("user") String userString) {
-		System.out.println("submitUserDetails   userString :"+userString);
-		ObjectMapper obj=new ObjectMapper();
+	public   @ResponseBody String  submitUserDetails(@RequestBody User user) {
+		System.out.println("submitUserDetails  :"+user);
+		/*ObjectMapper obj=new ObjectMapper();
 		User user=null;
 		try {
 			user = obj.readValue(userString, User.class);
@@ -41,7 +42,7 @@ public class UserController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		System.out.println("user name"+user.getName());
 		try {
 			uerService.manipulateUserObject(user);
@@ -51,5 +52,4 @@ public class UserController {
 		}
 		return "";
 	}
-	
 }

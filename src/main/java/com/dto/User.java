@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="USERS")
@@ -28,6 +29,7 @@ public class User {
 	private  String mobileNo;
 	private String password;
 	private short sex;
+	private int userType;
 	/* its convention to add ROLE_* to any role for using spring security till version 3.* not mandatory for 4.* onwards*/
 	/***
 	 * why Set<Roles> throw exception when its HashSet<Roles> ?????????? 
@@ -147,5 +149,13 @@ public class User {
 				+ ", name=" + name + ", isCompleted=" + isCompleted
 				+ ", email=" + email + ", isBlacklisted=" + isBlacklisted + ", role=" + role +"]";
 	}
+	@Column(name="ROLE_ID")
+	public int getUserType() {
+		return userType;
+	}
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+
 
 }

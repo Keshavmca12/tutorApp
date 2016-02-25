@@ -12,24 +12,28 @@
 	<http auto-config="true" use-expressions="true">
 		<!-- its convention to add ROLE_* to any role for using spring security -->
 		 <intercept-url pattern="/login" access="permitAll"></intercept-url>
+		  <intercept-url pattern="/submitUserDetails" access="permitAll"></intercept-url>
         <intercept-url pattern="/accessdenied" access="permitAll"></intercept-url>
-        <intercept-url pattern="/**" access="hasAnyRole('student','teacher')"></intercept-url>   <!--   hasRole('ROLE_STUDENT') -->
-		<!-- <intercept-url pattern="/student" access="hasRole('student')" />
-        <intercept-url pattern="/teacher" access="hasRole('teacher')" />
+        <!-- <intercept-url pattern="/**" access="hasAnyRole('student','teacher')"></intercept-url>  -->  <!--   hasRole('ROLE_STUDENT') -->
+		 <intercept-url pattern="/student/**" access="hasRole('student')" />
+        <intercept-url pattern="/teacher/**" access="hasRole('teacher')" />
+        <intercept-url pattern="/admin/**" access="hasRole('admin')" />
+        <intercept-url pattern="/**" access="hasAnyRole('student','teacher','admin')"></intercept-url> 
         
          <form-login  login-page="/login"
                      username-parameter="userName"
                      password-parameter="password"
+                     login-processing-url="/j_spring_security_check"
                      authentication-success-handler-ref="customSuccessHandler"
-                     authentication-failure-url="/403" /> -->
-		<form-login 
+                     authentication-failure-url="/login?error" /> 
+	<!-- 	<form-login 
 		    login-page="/login" 
 		    default-target-url="/home" 
 		    always-use-default-target="true" 
 			login-processing-url="/j_spring_security_check"
 			authentication-failure-url="/403" 
 			username-parameter="userName"
-			password-parameter="password" />
+			password-parameter="password" /> -->
 		<!-- enable csrf protection -->
 		  <csrf/>
 	</http>
@@ -44,6 +48,7 @@
         <authentication-provider user-service-ref="springUserDetailService"/>
       
 	</authentication-manager>
+	 <beans:bean id="customSuccessHandler" class="com.security.CustomSuccessHandler" />
 	 <beans:bean id="springUserDetailService" class="com.service.SpringUserDetailService" />
 
 </beans:beans>
