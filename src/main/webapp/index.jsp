@@ -1,4 +1,4 @@
-<html ng-app="tutorApp">
+<html ng-app="loginApp">
 <head>
 <title>Tutor App</title>
 <link rel="stylesheet"
@@ -9,11 +9,10 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-<script src="resources/js/app.js"></script>
-<script src="resources/js/appController.js"></script>
-<script src="resources/js/registrationController.js"></script>
+<script src="resources/login/app.js"></script>
+<script src="resources/login/registrationController.js"></script>
 </head>
-<body ng-controller="AppController">
+<body ng-controller="RegistrationController">
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -68,7 +67,7 @@
 				</div>
 			</form>
 			<h2>New user register here</h2>
-			<div ng-include="'resources/views/register.html'"></div>
+			<div ng-include="'resources/login/register.html'"></div>
 		</div>
 	</div>
 	<footer class="navbar-fixed-bottom">

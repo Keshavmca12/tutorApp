@@ -1,8 +1,11 @@
-CREATE DATABASE "tutorApp"
-  WITH ENCODING='UTF8'
-       CONNECTION LIMIT=-1;
-       
-       
+CREATE DATABASE "TestDB"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
  --------------------------------
  
  CREATE SEQUENCE sex_sequence
@@ -26,11 +29,11 @@ WITH (
 ----------------------------------
 ALTER TABLE sex
   ADD CONSTRAINT sex_pkey
-    PRIMARY KEY (sex_id)
+    PRIMARY KEY (sex_id);
 
 -----------------------------------
 
-insert into sex(
+INSERT into sex(
 sex_name) values ('male');
 
 insert into sex(
@@ -62,17 +65,17 @@ WITH (
 ----------------------------------------------------
 ALTER TABLE roles
   ADD CONSTRAINT roles_pkey
-    PRIMARY KEY (role_id)
+    PRIMARY KEY (role_id);
 
 -------------------------------------------------------
-insert into ROLES(
+INSERT into ROLES(
 role_id,
 role_name) values (1,'teacher');
 
 --------------------------------------------------------------
 
 
-insert into ROLES(
+INSERT into ROLES(
 role_id,
 role_name) values (2,'student');
 
@@ -117,4 +120,5 @@ alter table users drop column created_on;
 alter table users add column created_on bigint;
 
 -------------------------------------------------------- 
+
 

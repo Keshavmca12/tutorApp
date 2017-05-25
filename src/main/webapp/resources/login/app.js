@@ -1,5 +1,5 @@
-var tutorApp=angular.module("tutorApp",[]);
-tutorApp.config(function($httpProvider) {
+var loginApp=angular.module("loginApp",[]);
+loginApp.config(function($httpProvider) {
 	$httpProvider.interceptors.push(function() {
 		return {
 
