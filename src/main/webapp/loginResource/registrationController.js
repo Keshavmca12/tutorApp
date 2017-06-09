@@ -1,4 +1,4 @@
-tutorApp.controller("RegistrationController",function($scope,$http){
+loginApp.controller("RegistrationController",function($scope,$http){
 $scope.user={};	
 $scope.submitUserDetails=function(user){
 	console.log("user",user);

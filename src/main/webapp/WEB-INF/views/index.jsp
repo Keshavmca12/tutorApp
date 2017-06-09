@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
-<html ng-app="tutorApp">
+<html ng-app="loginApp">
 <head>
 <title>Tutor App</title>
 <link rel="stylesheet"
@@ -11,11 +11,10 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-<script src="resources/js/app.js"></script>
-<script src="resources/js/appController.js"></script>
-<script src="resources/js/registrationController.js"></script>
+<script src="loginResource/app.js"></script>
+<script src="loginResource/registrationController.js"></script>
 </head>
-<body ng-controller="AppController">
+<body ng-controller="RegistrationController">
 	<h3>
 		<c:if test="${not empty msg}">
 			<div class="msg">${msg}</div>
@@ -77,7 +76,7 @@
 				</div>
 			</form>
 			<h2>New user register here</h2>
-			<div ng-include="'resources/views/register.html'"></div>
+			<div ng-include="'loginResource/register.html'"></div>
 		</div>
 	</div>
 	<footer class="navbar-fixed-bottom">
